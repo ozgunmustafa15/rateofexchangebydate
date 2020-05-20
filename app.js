@@ -2,9 +2,8 @@ const amountElement = document.getElementById("amount");
 const firstUnit = document.getElementById("firstCurrency");
 const secondUnit = document.getElementById("secondCurrency");
 const currencyDate = document.getElementById("currencyDate");
-
-
 const currency=new Currency("USD","TRY");
+const ui =new UI(firstUnit,secondUnit);
 
 
 eventListeners();
@@ -14,18 +13,27 @@ function eventListeners(){
 
     firstUnit.onchange = function(){
         
-        currency.changeFirstCurrency(firstUnit.options[firstUnit.selectedIndex].textContent)
+        currency.changeFirstCurrency(firstUnit.options[firstUnit.selectedIndex].textContent);
+        ui.changeFirst();
     };
     
     secondUnit.onchange = function(){
-        currency.changeSecondCurrency(secondUnit.options[secondUnit.selectedIndex].textContent)
-        
+        currency.changeSecondCurrency(secondUnit.options[secondUnit.selectedIndex].textContent);  
+        ui.changeSecond();
+      
     };
     currencyDate.onchange = function(){
+
         currency.changeCurrencyDate(currencyDate.value);
+        ui.changeDate();
+
     };
 }
 function exchangeCurrency(){
     currency.changeAmount(amountElement.value);
-    currency.exchange();
+    currency.exchange()
+    .then((result,amount)=>{
+        ui.displayResult(result,amount)
+    })
+    .catch(err=>console.error(err))
 }

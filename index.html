@@ -32,16 +32,16 @@
                             <form id="translate-form">
 
                                 <h5 class="card-title text-white">Çevir</h5>
-                                <small class="card-subtitle text-muted">Hangi ülkenin parası hangi tarihte ne kadar değerliydi. Görmek istersen öncelikle tarih seç daha sonra dönüştürmek isteidğin birimleri seç.</small><br><br>
+                                <small class="card-subtitle text-muted">Hangi ülkenin parası hangi tarihte ne kadar
+                                    değerliydi. Görmek istersen öncelikle tarih seç daha sonra dönüştürmek isteidğin
+                                    birimleri seç.</small><br><br>
 
                                 <!-- <textarea name="" class="form-control" id="word" cols="30" rows="10"></textarea> -->
                                 <input type="date" class="form-control" id="currencyDate" placeholder="tarih seç">
 
                                 <div class="row align-items-center justify-content-center">
-                                    <div class="col-lg-5 col-xs-12  my-2">
-                                        <input type="number" name="" id="amount" class="form-control" value="">
-                                    </div>
-                                    
+
+
                                     <div class="col-lg-3 col-xs-12 my-2 ">
                                         <select name="" id="firstCurrency" class="form-control">
                                             <option value="USD">USD</option>
@@ -66,6 +66,9 @@
                                             <option value="ZAR">ZAR</option>
                                         </select>
                                     </div>
+                                    <div class="col-lg-5 col-xs-12  my-2">
+                                        <input type="number" name="" id="amount" class="form-control" value="">
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -73,8 +76,13 @@
 
                         <div class="card" id="result">
                             <div class="card-body">
-                                <h6 class="card-title text-info float-left"> USD - TRY : </h6>
-                                <h6 class="card-title text-danger"> <b>55 TL</b></h6>
+                                <h4 id="outputFirst" class="card-title text-info float-left">USD</h4>
+                                <h4 class="card-title text-info text-muted float-left mx-2"> - </h4>
+                                <h4 id="outputSecond" class="card-title text-info ">TRY</h4>
+                                <h5 id="outputAmount" class="card-title float-left text-danger "> 55 </h5>
+                                <h5 class="card-title text-info text-muted float-left mx-2"> - </h5>
+                                <h5 id="outputResult" class="card-title text-danger "> 55 </h5>
+                                <small id="outputDate" class="card-title text-muted">20.02.1995 tarihli kur</small>
 
                             </div>
                         </div>

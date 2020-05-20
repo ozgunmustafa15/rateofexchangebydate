@@ -1,5 +1,5 @@
 class Currency {
-    constructor(firstCurrency, secondCurrency,dateCurrency) {
+    constructor(firstCurrency, secondCurrency, dateCurrency) {
         this.firstCurrency = firstCurrency;
         this.secondCurrency = secondCurrency;
         this.dateCurrency = dateCurrency;
@@ -9,19 +9,22 @@ class Currency {
     }
 
     exchange() {
-        this.url=`https://api.exchangeratesapi.io/${this.dateCurrency}?base=${this.firstCurrency}`;
-        fetch(this.url)
-            .then((response) => response.json())
-            .then((data) => {
-                const parity = data.rates[this.secondCurrency];
+        return new Promise((resolve, reject) => {
+            this.url = `https://api.exchangeratesapi.io/${this.dateCurrency}?base=${this.firstCurrency}`;
+            fetch(this.url)
+                .then((response) => response.json())
+                .then((data) => {
+                    const parity = data["rates"][this.secondCurrency];
 
-                const amount2 = Number(this.amount.value);
-                let total = parity * amount2;
-                console.log(total)
+                    const amount2 = Number(this.amount.value);
+                    let total = parity * amount2;
+                    resolve(total);
 
-                
-            })
-            .catch((err) => console.log(err));
+
+                })
+                .catch((err) => reject(err));
+        });
+
     }
     changeAmount() {
         this.amount = amount;
@@ -32,7 +35,7 @@ class Currency {
     changeSecondCurrency(newSecondCurrency) {
         this.secondCurrency = newSecondCurrency;
     }
-    changeCurrencyDate(newDate){
+    changeCurrencyDate(newDate) {
         this.dateCurrency = newDate;
     }
 }
